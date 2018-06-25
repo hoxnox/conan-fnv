@@ -11,15 +11,15 @@ class FnvConan(NxConanFile):
     exports_sources = ['CMakeLists.txt']
 
     def do_source(self):
-        self.retrieve("a947995b6606dc91eca79e55fb87f22edce5e5b358a521a7115b18dfc7ab7715",
+        self.retrieve("9c52f7189174a471f757adcf8f92c19280bc1fe94bd07bda13b0006287c1a814",
                 [
                     "vendor://fnv/fnv/fnv-{v}.tar.gz".format(v=self.version),
                     "http://www.isthe.com/chongo/src/fnv/fnv-{v}.tar.gz".format(v=self.version)
-                ], "fnv-{v}.tar.gz".format(v=self.version))
+                ], "fnv-{v}.tar".format(v=self.version))
 
     def do_build(self):
         cmake = CMake(self)
-        tools.untargz("fnv-{v}.tar.gz".format(v=self.version))
+        tools.unzip("fnv-{v}.tar".format(v=self.version))
         cmake.configure()
         cmake.build(target="install")
 
